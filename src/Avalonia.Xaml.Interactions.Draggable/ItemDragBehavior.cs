@@ -27,13 +27,13 @@ public class ItemDragBehavior : Behavior<Control>
     /// <summary>
     /// 
     /// </summary>
-    public static readonly StyledProperty<Orientation> OrientationProperty = 
+    public static readonly StyledProperty<Orientation> OrientationProperty =
         AvaloniaProperty.Register<ItemDragBehavior, Orientation>(nameof(Orientation));
 
     /// <summary>
     /// 
     /// </summary>
-    public static readonly StyledProperty<double> HorizontalDragThresholdProperty = 
+    public static readonly StyledProperty<double> HorizontalDragThresholdProperty =
         AvaloniaProperty.Register<ItemDragBehavior, double>(nameof(HorizontalDragThreshold), 3);
 
     /// <summary>
@@ -96,7 +96,7 @@ public class ItemDragBehavior : Behavior<Control>
     private void PointerPressed(object? sender, PointerPressedEventArgs e)
     {
         var properties = e.GetCurrentPoint(AssociatedObject).Properties;
-        if (properties.IsLeftButtonPressed 
+        if (properties.IsLeftButtonPressed
             && AssociatedObject?.Parent is ItemsControl itemsControl)
         {
             _enableDrag = true;
@@ -200,9 +200,9 @@ public class ItemDragBehavior : Behavior<Control>
             {
                 SetTranslateTransform(container, 0, 0);
             }
-  
+
             i++;
-        }  
+        }
     }
 
     private void RemoveTransforms(ItemsControl? itemsControl)
@@ -221,9 +221,9 @@ public class ItemDragBehavior : Behavior<Control>
             {
                 SetTranslateTransform(container, 0, 0);
             }
-  
+
             i++;
-        }  
+        }
     }
 
     private void MoveDraggedItem(ItemsControl? itemsControl, int draggedIndex, int targetIndex)
@@ -241,7 +241,7 @@ public class ItemDragBehavior : Behavior<Control>
         }
         else
         {
-            if (itemsControl?.Items is {IsReadOnly: false} itemCollection)
+            if (itemsControl?.Items is { IsReadOnly: false } itemCollection)
             {
                 var draggedItem = itemCollection[draggedIndex];
                 itemCollection.RemoveAt(draggedIndex);
@@ -250,7 +250,7 @@ public class ItemDragBehavior : Behavior<Control>
                 if (itemsControl is SelectingItemsControl selectingItemsControl)
                 {
                     selectingItemsControl.SelectedIndex = targetIndex;
-                } 
+                }
             }
         }
     }
@@ -340,8 +340,8 @@ public class ItemDragBehavior : Behavior<Control>
                 var targetStart = orientation == Orientation.Horizontal ? targetBounds.X : targetBounds.Y;
 
                 var targetMid = orientation == Orientation.Horizontal
-                    ? targetBounds.X + targetBounds.Width / 2
-                    : targetBounds.Y + targetBounds.Height / 2;
+                    ? targetBounds.X + (targetBounds.Width / 2)
+                    : targetBounds.Y + (targetBounds.Height / 2);
 
                 var targetIndex = _itemsControl.IndexFromContainer(targetContainer);
 
